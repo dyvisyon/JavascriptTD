@@ -1,0 +1,13 @@
+header {
+    background-image: url(../imgFile/javascript.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    color: silver;
+    text-shadow: 2px 2px 5px snow;
+    text-align: center;
+}
+
+body {
+    background-color: rgb(206, 205, 205);
+}
