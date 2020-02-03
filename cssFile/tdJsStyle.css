@@ -7,3 +7,7 @@ header {
     text-shadow: 2px 2px 5px snow;
     text-align: center;
 }
+
+body {
+    background-color: rgb(206, 205, 205);
+}
