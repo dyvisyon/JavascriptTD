@@ -7,11 +7,40 @@
 
 <body>
     <script>
+
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
         }
-        console.log(getRandomInt(101));
+        //console.log(getRandomInt(101));
+
+        const nombreCherche = getRandomInt(101);
+
+        console.log(nombreCherche);
+
+        function isFound(){
+        	var arg = document.getElementById('numberEntry').value;
+        	if(arg < nombreCherche){
+        		console.log("C'est plus");
+        	}
+        	else if(arg > nombreCherche){
+        		console.log("C'est moins");
+        	}
+        	else if(arg == nombreCherche){
+        		console.log("C'est gagné");
+        	}
+        	else{
+        		console.log("Erreur dans l'entrée");
+        	}
+        }
+
+
+
     </script>
+
+    <form onsubmit="return false;">
+    	Enter a number : <input id="numberEntry" type="text" name="number">
+    	<input type="submit" value="Submit" onclick="isFound()">
+    </form>
 
 </body>
 
