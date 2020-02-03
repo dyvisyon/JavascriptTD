@@ -73,51 +73,42 @@
             default:
                 console.log('Ce n\'est pas un entier');
         }
-	
-	
+
+
 
 
         var exoE_A = 345;
         var exoE_B = 2345;
 
-        function compareA_B(param1,param2){
+        function compareA_B(param1, param2) {
 
-        	if(typeof param1 != "number"){
-        		return 'Erreur' + "\n" + 'Au moins l\'un des deux n\'est pas un entier';
-        	}
-        	else if (typeof param2 != "number"){
-        		return 'Erreur' + "\n" + 'Au moins l\'un des deux n\'est pas un entier';
-        	}
-        	else{
-        		if(param1 < param2){
-        		return -1 + "\n" + param1 +' est inferieur à '+param2+'.';
-	        	}
-	        	else if(param1 == param2){
-	        		return 0 + "\n" + param1 +' et '+ param2+' sont égaux.';
-	        	}
-	        	else if(param1 > param2){
-	        		return 1 + "\n" + param1 +' est superieur à '+param2+'.';
-	        	}
-        	}
-        	
+            if (typeof param1 != "number") {
+                return 'Erreur' + "\n" + 'Au moins l\'un des deux n\'est pas un entier';
+            } else if (typeof param2 != "number") {
+                return 'Erreur' + "\n" + 'Au moins l\'un des deux n\'est pas un entier';
+            } else {
+                if (param1 < param2) {
+                    return -1 + "\n" + param1 + ' est inferieur à ' + param2 + '.';
+                } else if (param1 == param2) {
+                    return 0 + "\n" + param1 + ' et ' + param2 + ' sont égaux.';
+                } else if (param1 > param2) {
+                    return 1 + "\n" + param1 + ' est superieur à ' + param2 + '.';
+                }
+            }
 
-        	
+
+
         }
 
-        console.log(compareA_B(exoE_A,exoE_B));
-
-        
-
-
-
-
-
+        console.log(compareA_B(exoE_A, exoE_B));
     </script>
 
 
-<footer>
-    <p>TD I by Keen'v, la Martiniquaise et lolo des bois</p>
-</footer>
+    <footer>
+        <div>
+            <p>TD I by Keen'v, la Martiniquaise et lolo des bois</p>
+        </div>
+    </footer>
 </body>
 
 </html>

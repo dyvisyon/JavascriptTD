@@ -11,3 +11,14 @@ header {
 body {
     background-color: rgb(206, 205, 205);
 }
+
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+footer div {
+    width: 100%;
+    text-align: center;
+}
