@@ -1,0 +1,121 @@
+#menu,
+#menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+#menu li {
+    display: inline-block;
+    position: relative;
+    border-radius: 8px 8px 0 0;
+}
+
+#menu ul li {
+    display: inherit;
+    border-radius: 0;
+}
+
+#menu ul li:hover {
+    border-radius: 0;
+}
+
+#menu ul li:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+#menu ul {
+    position: absolute;
+    z-index: 1000;
+    max-height: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    -moz-transition: .8s all .3s;
+    -webkit-transition: .8s all .3s;
+    transition: .8s all .3s;
+}
+
+#menu li:hover ul {
+    max-height: 15em;
+}
+
+
+/* background des liens menus */
+
+#menu li:first-child {
+    background-color: rgb(158, 32, 207);
+    background-image: -webkit-linear-gradient(top, rgb(198, 143, 214) 0%, rgb(128, 78, 175) 100%);
+    background-image: linear-gradient(to bottom, rgb(221, 114, 221) 0%, rgb(112, 57, 184) 100%);
+}
+
+#menu li:nth-child(2) {
+    background-color: rgb(56, 140, 204);
+    background-image: -webkit-linear-gradient(top, rgb(114, 191, 185) 0%, rgb(109, 163, 211) 100%);
+    background-image: linear-gradient(to bottom, rgb(104, 200, 155) 0%, rgb(66, 141, 206) 100%);
+}
+
+#menu li:last-child {
+    background-color: rgb(226, 158, 23);
+    background-image: -webkit-linear-gradient(top, rgb(243, 186, 71) 0%, rgb(219, 65, 65) 100%);
+    background-image: linear-gradient(to bottom, #F6AD1A 0%, rgb(199, 53, 65) 100%);
+}
+
+
+/* background des liens sous menus */
+
+#menu li:first-child li {
+    background: rgb(172, 65, 214);
+}
+
+#menu li:nth-child(2) li {
+    background: rgb(77, 183, 187);
+}
+
+#menu li:last-child li {
+    background: rgb(233, 156, 33);
+}
+
+
+/* background des liens menus et sous menus au survol */
+
+#menu li:first-child:hover,
+#menu li:first-child li:hover {
+    background: rgb(182, 78, 223);
+}
+
+#menu li:nth-child(2):hover,
+#menu li:nth-child(2) li:hover {
+    background: rgb(97, 217, 233);
+}
+
+#menu li:last-child:hover,
+#menu li:last-child li:hover {
+    background: #F6AD1A;
+}
+
+
+/* les a href */
+
+#menu a {
+    text-decoration: none;
+    display: block;
+    padding: 8px 32px;
+    color: #fff;
+    font-family: arial;
+}
+
+#menu ul a {
+    padding: 8px 0;
+}
+
+#menu li:hover li a {
+    color: #fff;
+    text-transform: inherit;
+}
+
+#menu li:hover a,
+#menu li li:hover a {
+    color: #000;
+}
