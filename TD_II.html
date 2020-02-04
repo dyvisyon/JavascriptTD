@@ -8,78 +8,82 @@
 
 <body>
     <header>
+        <a href="index.html">
+            <img id="logo" src="imgFile/Yodapokemon.jpg" alt="indexLink">
+        </a>
         <div>
             <h1>Semaine Javascript</h1>
         </div>
     </header>
+    <div id="corps">
+        <form onsubmit="return false;">
+            Enter a number : <input id="numberEntry" type="text" name="number">
+            <input type="submit" value="Envoyer" onclick="isFound()">
+            <input type="submit" value="Recommencer" onclick="isLost()">
+        </form>
+        <p id="continue"></p>
+        <div id="mondiv"></div>
 
-    <form onsubmit="return false;">
-        Enter a number : <input id="numberEntry" type="text" name="number">
-        <input type="submit" value="Envoyer" onclick="isFound()">
-        <input type="submit" value="Recommencer" onclick="isLost()">
-    </form>
-    <p id="continue"></p>
-    <div id="mondiv"></div>
-
-    <script>
-        var compteurEssai = 0;
-        var tableauCoups = [];
-        var nombreCherche = getRandomInt(100);
-        console.log(nombreCherche);
-
-        function getRandomInt(max) {
-            return Math.floor(Math.random() * Math.floor(max + 1));
-        }
-
-        function endGame() {
-            if (tableauCoups.length > 5) {
-                tableauCoups.shift();
-            }
-            displayTab();
-            compteurEssai = 0;
-            nombreCherche = getRandomInt(100);
+        <script>
+            var compteurEssai = 0;
+            var tableauCoups = [];
+            var nombreCherche = getRandomInt(100);
             console.log(nombreCherche);
-            console.log('tab histo', tableauCoups);
-        }
 
-        function isFound() {
-            var arg = document.getElementById('numberEntry').value;
-            compteurEssai++;
-            if (arg < nombreCherche) {
-                document.getElementById("continue").innerHTML = "C\'est plus.";
-            } else if (arg > nombreCherche) {
-                document.getElementById("continue").innerHTML = "C\'est moins.";
-            } else if (arg == nombreCherche) {
-                document.getElementById("continue").innerHTML = "C\'est gagné.";
-                tableauCoups.push([nombreCherche, compteurEssai]);
-                endGame();
-            } else {
-                document.getElementById("continue").innerHTML = "Erreur dans l'entrée.";
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * Math.floor(max + 1));
             }
-        }
 
-        function isLost() {
-            document.getElementById("continue").innerHTML = "C\'est perdu.";
-            tableauCoups.push([nombreCherche, -1])
-            endGame();
-        }
-
-        function displayTab() {
-            var html = '<ul>';
-            for (let result of tableauCoups) {
-                html += '<li>';
-                html += 'Nombre recherché : ' + result[0];
-                if (result[1] <= 0) {
-                    html += ' | Perdu ! ';
-                } else {
-                    html += ' | Tentatives : ' + result[1];
+            function endGame() {
+                if (tableauCoups.length > 5) {
+                    tableauCoups.shift();
                 }
-                html += '</li>';
+                displayTab();
+                compteurEssai = 0;
+                nombreCherche = getRandomInt(100);
+                console.log(nombreCherche);
+                console.log('tab histo', tableauCoups);
             }
-            html += '</ul>';
-            document.getElementById("mondiv").innerHTML = html;
-        }
-    </script>
+
+            function isFound() {
+                var arg = document.getElementById('numberEntry').value;
+                compteurEssai++;
+                if (arg < nombreCherche) {
+                    document.getElementById("continue").innerHTML = "C\'est plus.";
+                } else if (arg > nombreCherche) {
+                    document.getElementById("continue").innerHTML = "C\'est moins.";
+                } else if (arg == nombreCherche) {
+                    document.getElementById("continue").innerHTML = "C\'est gagné.";
+                    tableauCoups.push([nombreCherche, compteurEssai]);
+                    endGame();
+                } else {
+                    document.getElementById("continue").innerHTML = "Erreur dans l'entrée.";
+                }
+            }
+
+            function isLost() {
+                document.getElementById("continue").innerHTML = "C\'est perdu.";
+                tableauCoups.push([nombreCherche, -1])
+                endGame();
+            }
+
+            function displayTab() {
+                var html = '<ul>';
+                for (let result of tableauCoups) {
+                    html += '<li>';
+                    html += 'Nombre recherché : ' + result[0];
+                    if (result[1] <= 0) {
+                        html += ' | Perdu ! ';
+                    } else {
+                        html += ' | Tentatives : ' + result[1];
+                    }
+                    html += '</li>';
+                }
+                html += '</ul>';
+                document.getElementById("mondiv").innerHTML = html;
+            }
+        </script>
+    </div>
 
     <footer>
         <div>

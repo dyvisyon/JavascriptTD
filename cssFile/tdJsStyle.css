@@ -11,6 +11,13 @@ header {
     font-size: 2em;
 }
 
+#logo {
+    display: unset;
+    padding-left: 0;
+    padding-top: 0;
+    width: 30%;
+}
+
 header div {
     width: 100%;
     text-align: center;
@@ -19,6 +26,8 @@ header div {
 body {
     background-color: rgb(206, 205, 205);
 }
+
+#corps {}
 
 footer {
     width: 100%;
