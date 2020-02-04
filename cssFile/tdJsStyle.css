@@ -30,3 +30,7 @@ footer div {
     width: 100%;
     text-align: center;
 }
+
+footer div img {
+    height: 80px;
+}
