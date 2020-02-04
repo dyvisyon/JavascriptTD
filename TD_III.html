@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TD III javascript</title>
+</head>
+<body>
+
+		<form onsubmit="return false;">
+            <input type="image" src="imgFile/punch.png" onclick="compare('pierre',botChoice)">
+            <input type="image" src="imgFile/hand.png" onclick="compare('feuille',botChoice)">
+            <input type="image" src="imgFile/deaf.png" onclick="compare('ciseaux',botChoice)">
+        </form>
+
+	<script>
+
+		var playerScore = 0;
+		var botScore = 0;
+        var botChoice = botChoice();
+//        var botChoice = botChoice();
+        
+		
+		function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max + 1));
+        }
+
+        function compare(playerChoice, botChoice) {
+
+            var playerChoice;
+            
+
+        	//si choix du joueur == choix ordi : egalité
+            switch(playerChoice, botChoice){
+
+                case playerChoice == 'pierre' && botChoice == 'ciseaux' : 
+                    console.log('gagné');
+                    break;
+
+                case playerChoice == 'pierre' && botChoice == 'pierre' : 
+                    console.log('égalité'); 
+                    
+                    break;
+
+                case playerChoice == 'pierre' && botChoice == 'feuille' : 
+                    console.log('perdu');
+                    
+                    break;
+
+                default:
+                    console.log('.............');
+
+                    /*
+                    if (botChoice == 'ciseaux') { console.log('gagné') }
+                    else if (botChoice == 'pierre') { console.log('égalité') }
+                    if (botChoice == 'pierre') { console.log('gagné') }
+                    else if (botChoice == 'feuille') { console.log('égalité') }
+                    if (botChoice == 'feuille') { console.log('gagné') }
+                    else if (botChoice == 'ciseaux') { console.log('égalité') }
+                    */
+            }
+            /*
+            if(playerChoice == botChoice){
+                console.log('égalité');
+            }
+        	else if(playerChoice == "pierre" && botChoice == "ciseaux") || (playerChoice == "feuille" && botChoice == "pierre") || (playerChoice == "ciseaux" && botChoice == "feuille"){
+                console.log('gagné');
+            }
+            else{
+                console.log('perdu');
+            }
+
+        	//et si (choix joueur == ciseaux && choix ordi == pierre) || (choix joueur == pierre && choix ordi == feuille) || (choix joueur == feuille && choix ordi == ciseux) : ordi gagne*/
+        }
+
+        function userChoice(playerChoice) {
+   
+            if(playerChoice == 'pierre') {
+                playerChoice = 'pierre';
+            }
+            else if(playerChoice == 'feuille') {
+                playerChoice = 'feuille';
+            }
+            else if(playerChoice == 'ciseaux') {
+                playerChoice = 'ciseaux';
+            }
+            return playerChoice;
+        }
+
+        function botChoice(){
+
+            let botRoll = getRandomInt(2);
+
+            if(botRoll == 0){
+                botRoll = 'pierre';
+            }
+            else if(botRoll == 1){
+                botRoll = 'feuille';
+            }
+            else{
+                botRoll = 'ciseaux';
+            }
+            console.log(botRoll)
+            return botRoll;
+        }
+
+        //var choixU = userChoice(playerChoice);
+        
+        //compare(choixO, choixU);
+
+
+
+
+
+
+
+
+	</script>
+
+</body>
+</html>
