@@ -4,7 +4,15 @@ header {
     background-size: cover;
     height: 200px;
     color: silver;
-    text-shadow: 2px 2px 5px snow;
+    text-shadow: 2px 2px 5px crimson;
+    display: flex;
+    align-items: center;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 2em;
+}
+
+header div {
+    width: 100%;
     text-align: center;
 }
 
