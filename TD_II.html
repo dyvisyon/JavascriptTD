@@ -3,10 +3,15 @@
 
 <head>
     <title>TD II Javascript</title>
+    <link rel="stylesheet" href="cssFile/tdJsStyle.css">
 </head>
 
 <body>
-
+    <header>
+        <div>
+            <h1>Semaine Javascript</h1>
+        </div>
+    </header>
 
     <form onsubmit="return false;">
         Enter a number : <input id="numberEntry" type="text" name="number">
@@ -17,13 +22,25 @@
     <div id="mondiv"></div>
 
     <script>
+        var compteurEssai = 0;
+        var tableauCoups = [];
+        var nombreCherche = getRandomInt(100);
+        console.log(nombreCherche);
+
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max + 1));
         }
 
-        var nombreCherche = getRandomInt(100);
-
-        console.log(nombreCherche);
+        function endGame() {
+            if (tableauCoups.length > 5) {
+                tableauCoups.shift();
+            }
+            displayTab();
+            compteurEssai = 0;
+            nombreCherche = getRandomInt(100);
+            console.log(nombreCherche);
+            console.log('tab histo', tableauCoups);
+        }
 
         function isFound() {
             var arg = document.getElementById('numberEntry').value;
@@ -35,13 +52,7 @@
             } else if (arg == nombreCherche) {
                 document.getElementById("continue").innerHTML = "C\'est gagné.";
                 tableauCoups.push([nombreCherche, compteurEssai]);
-                if (tableauCoups.length > 5) {
-                    tableauCoups.shift();
-                }
-                compteurEssai = 0;
-                nombreCherche = getRandomInt(100);
-                console.log(nombreCherche);
-                console.log('tab histo', tableauCoups);
+                endGame();
             } else {
                 document.getElementById("continue").innerHTML = "Erreur dans l'entrée.";
             }
@@ -50,29 +61,31 @@
         function isLost() {
             document.getElementById("continue").innerHTML = "C\'est perdu.";
             tableauCoups.push([nombreCherche, -1])
-            if (tableauCoups.length > 5) {
-                tableauCoups.shift();
+            endGame();
+        }
+
+        function displayTab() {
+            var html = '<ul>';
+            for (let result of tableauCoups) {
+                html += '<li>';
+                html += 'Nombre recherché : ' + result[0];
+                if (result[1] <= 0) {
+                    html += ' | Perdu ! ';
+                } else {
+                    html += ' | Tentatives : ' + result[1];
+                }
+                html += '</li>';
             }
-            compteurEssai = 0;
-            nombreCherche = getRandomInt(100);
-            console.log(nombreCherche);
-            console.log('tab histo', tableauCoups);
+            html += '</ul>';
+            document.getElementById("mondiv").innerHTML = html;
         }
-
-        var compteurEssai = 0;
-        var tableauCoups = [];
-        if (tableauCoups != null) {
-            document.getElementById("mondiv").innerHTML = tableauCoups.join();
-        }
-
-
-
-        //[[0,0]]
-        //[[0,0],[0,0]]
-        //[[0,0],[0,0],[0,0],[0,0],[0,0]]
-        //[[0,0],[0,0],[0,0],[0,0],[0,0]]
     </script>
 
+    <footer>
+        <div>
+            <p>Le nombre à trouver by les paillettes</p>
+        </div>
+    </footer>
 </body>
 
 </html>
