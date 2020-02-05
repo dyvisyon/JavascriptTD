@@ -20,11 +20,11 @@
         <input type="image" id="deaf" src="imgFile/deaf.png" value='ciseaux' name="bouton" onclick="jouerCiseaux()">
     </form>
 
-    <form>
-        <input type="submit" value="Recommencer" onclick="islost()">
+    <form onsubmit="return false;">
+        <input type="submit" value="Recommencer" onclick="isLost()">
     </form>
     <p id=reponse></p>
-    <p id="continue"></p>
+    <p id=continue></p>
     <script>
         function isLost() {
                 document.getElementById("continue").innerHTML = "C\'est perdu.";
