@@ -6,12 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TD III test javascript</title>
+    <link rel="stylesheet" href="cssFile/tdJsStyle.css">
+    <link rel="stylesheet" href="cssFile/menuStyle.css">
 </head>
 
 <body>
+    <header>
+        <a href="index.html">
+            <img id="logo" src="imgFile/Yodapokemon.jpg" alt="indexLink">
+        </a>
+        <div>
+            <h1>Semaine Javascript</h1>
+        </div>
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="#">TDs</a>
+                    <ul>
+                        <li>
+                            <a href="TD_I.html">TD I</a>
+                        </li>
+                        <li><a href="TD_II.html">TD II</a></li>
+                        <li><a href="TD_III.html">TD III</a></li>
+                        <li><a href="TD_IV.html">TD IV</a></li>
+                        <li><a href="projet.html">Projet</a></li>
+                    </ul>
+                </li>
+                <li>L'équipe : lesPaillettes
+                    <ul>
+                        <li>Keen'v --> Kévin Ruault</li>
+                        <li>La Martiniquaise --> Tania Rojas</li>
+                        <li>Lolo des Bois --> Laurent Bodin</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
     <form method="POST">
         <label for="name">Enter your name: </label>
-        <input type="text" name="name" id="name" >
+        <input type="text" name="name" id="name">
     </form>
 
     <form onsubmit="return false;">
@@ -24,10 +58,10 @@
         <input type="submit" value="Recommencer" onclick="isLost()">
     </form>
     <p id=reponse></p>
-    <p id=continue></p>
+
     <script>
         function isLost() {
-                document.getElementById("continue").innerHTML = "C\'est perdu.";
+            document.getElementById("reponse").innerHTML = "Perdu !";
         }
 
         var botPlay;
@@ -73,48 +107,55 @@
             if (a == 'pierre') {
                 switch (b) {
                     case 'ciseaux':
-                        document.getElementById('reponse').innerHTML = 'gagné';
+                        document.getElementById('reponse').innerHTML = 'Gagné !';
                         break;
 
                     case 'pierre':
-                        document.getElementById('reponse').innerHTML = 'égalité';
+                        document.getElementById('reponse').innerHTML = 'Egalité !';
                         break;
 
                     case 'feuille':
-                        document.getElementById('reponse').innerHTML = 'perdu';
+                        document.getElementById('reponse').innerHTML = 'Perdu !';
                         break;
                 }
             } else if (a == 'feuille') {
                 switch (b) {
                     case 'ciseaux':
-                        document.getElementById('reponse').innerHTML = 'perdu';
+                        document.getElementById('reponse').innerHTML = 'Perdu !';
                         break;
 
                     case 'pierre':
-                        document.getElementById('reponse').innerHTML = 'gagné';
+                        document.getElementById('reponse').innerHTML = 'Gagné !';
                         break;
 
                     case 'feuille':
-                        document.getElementById('reponse').innerHTML = 'égalité';
+                        document.getElementById('reponse').innerHTML = 'Egalité !';
                         break;
                 }
             } else {
                 switch (b) {
                     case 'ciseaux':
-                        document.getElementById('reponse').innerHTML = 'égalité';
+                        document.getElementById('reponse').innerHTML = 'Egalité !';
                         break;
 
                     case 'pierre':
-                        document.getElementById('reponse').innerHTML = 'perdu';
+                        document.getElementById('reponse').innerHTML = 'Perdu !';
                         break;
 
                     case 'feuille':
-                        document.getElementById('reponse').innerHTML = 'gagné';
+                        document.getElementById('reponse').innerHTML = 'Gagné !';
                         break;
                 }
             }
         }
     </script>
+
+    <footer>
+        <div>
+            <img src="imgFile/zeTeam.jpg" alt="zeTeam">
+            <p>TD I by lesPaillettes<br>(aka Keen'v, la Martiniquaise et lolo des bois)</p>
+        </div>
+    </footer>
 
 </body>
 
