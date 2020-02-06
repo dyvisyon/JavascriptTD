@@ -1,15 +1,18 @@
-<html>
+
+<!DOCTYPE>
+<html lang="fr">
+
 
 <head>
+	<meta charset="utf-8">
     <title>Jeu de pendu en Javascipt</title>
     <link rel=Stylesheet type="text/css" href=style.css>
-    <script language="JavaScript">
+    <script>
         
         var motSecret;
         // Le tableau qui contient tous les mots possibles
 
-        var now = new Date(); // Date d'aujourd'hui
-        var tableauMot = new Array(); // Le tableau qui contient les lettres du mot � trouver
+        var tableauMot = new Array(); // Le tableau qui contient les lettres du mot à trouver
         var batWordsE = new Array();
         var pokeWordsE = new Array();
         var disneyWordsE = new Array();
@@ -23,10 +26,10 @@
         var disneyWordsH = new Array();
         var kitchenWordsH = new Array();
 
-        var tailleMot; // Le nombre de lettres du mot � trouver
-        var coupsManques = 0; // Le nombre de lettres fausses essay�es
-        var lettresTrouvees = 0; // Le nombre de lettres trouv�es
-        var fini = false; // true si le jeu est termin�
+        var tailleMot; // Le nombre de lettres du mot à trouver
+        var coupsManques = 0; // Le nombre de lettres fausses essayées
+        var lettresTrouvees = 0; // Le nombre de lettres trouvées
+        var fini = false; // true si le jeu est terminé
 
         batWordsE[0] = "ROBIN";
         batWordsE[1] = "JOKER";
@@ -65,26 +68,138 @@
         kitchenWordsH[1] = "EMPANADAS";
         kitchenWordsH[2] = "RATATOUILLE";
 
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max + 1));
+        }
+
+        function displayMenu(){
+			document.getElementById('menu').style.display = block;
+			document.getElementById('page').style.display = none;
+		}
+
+		function displayGame(){
+			document.getElementById('menu').style.display = none;
+			document.getElementById('page').style.display = block;
+		}
+
+        function getForms(){
+			themeSelected = document.querySelector('input[name=tChoice]:checked').value; 
+			hardnessSelected = document.querySelector('input[name=hChoice]:checked').value; 
+			playerNameSelected = document.getElementById('nameEntry').value;
+			if(playerNameSelected == ''){
+				playerNameSelected = 'Noob';
+			}
+			getTheme(themeSelected, hardnessSelected);
+			console.log(themeSelected, hardnessSelected,playerNameSelected);
+		}
+
+		function getTheme(a,b){
+
+			if(b == 'Facile'){
+				switch(a){
+
+					case 'Disney': 
+						wordsList = disneyWordsE;
+					break;
+
+					case 'Batman': 
+						wordsList = batWordsE;
+					break;
+
+					case 'Pokemon': 
+						wordsList = pokeWordsE;
+					break;
+
+					case 'Cuisine': 
+						wordsList = kitchenWordsE;
+					break;
+					
+				}
+			}
+			else if( b == 'Intermediaire'){
+				switch(a){
+
+					case 'Disney': 
+						wordsList = disneyWordsM;
+					break;
+
+					case 'Batman': 
+						wordsList = batWordsM;
+					break;
+
+					case 'Pokemon': 
+						wordsList = pokeWordsM;
+					break;
+
+					case 'Cuisine': 
+						wordsList = kitchenWordsM;
+					break;
+					
+				}
+			}
+			else{
+				switch(a){
+
+					case 'Disney': 
+						wordsList = disneyWordsH;
+					break;
+
+					case 'Batman': 
+						wordsList = batWordsH;
+					break;
+
+					case 'Pokemon': 
+						wordsList = pokeWordsH;
+					break;
+
+					case 'Cuisine': 
+						wordsList = kitchenWordsH;
+					break;
+					
+				}
+			}
+			motSecret = randomWord(wordsList);
+			console.log('mot = ' + motSecret);
+			console.log(wordsList);
+			tailleMot = motSecret.length;
+			//isplayGame();
+		}
         // On prend un mot au hasard en fonction de la seconde en cours
-        motSecret = mots[now.getSeconds() % mots.length];
-        tailleMot = motSecret.length;
+        	
+
+        
+
+        function randomWord(list) {
+            let roll = getRandomInt(2);
+
+            if (roll == 0) {
+                roll = list[0];
+            } else if (roll == 1) {
+                roll = list[1];
+            } else if (roll == 2) {
+                roll = list[2];
+            }
+            return roll;
+        }
+
+        
 
         // Permet de changer la couleur des touches du clavier
         function changeCouleur(element, couleur) {
             element.style.backgroundColor = couleur;
         }
 
-        // G�re tous les traitements � faire lorsqu'on appuie sur une touche
+        // Gère tous les traitements à faire lorsqu'on appuie sur une touche
         function proposer(element) {
 
-            // Si la couleur de fond est lightgreen, c'est qu'on a d�j� essay� - on quitte la fonction
+            // Si la couleur de fond est lightgreen, c'est qu'on a déjà essayé - on quitte la fonction
             if (element.style.backgroundColor == "lightGreen" || fini) return;
 
-            // On r�cup�re la lettre du clavier et on met la touche en lightgreen (pour signaler qu'elle est cliqu�e)
+            // On récupére la lettre du clavier et on met la touche en lightgreen (pour signaler qu'elle est cliqu�e)
             var lettre = element.innerHTML;
             changeCouleur(element, "lightGreen");
 
-            // On met la variable trouve � false;
+            // On met la variable trouve à false;
             var trouve = false;
 
             // On parcours chaque lettre du mot, on cherche si on trouve la lettre s�l�ectionn�e au clavier
@@ -113,10 +228,22 @@
                 }
             }
             if (lettresTrouvees == tailleMot) {
-                alert("Bravo ! Vous avez d�couvert le mot secret !");
+                alert("Bravo ! Vous avez découvert le mot secret !");
                 fini = true;
             }
         }
+
+
+		
+
+		var themeSelected; 
+		var hardnessSelected; 
+		var playerNameSelected;
+		var wordsList;
+
+		
+
+		
        
     </script>
 </head>
@@ -126,35 +253,36 @@
 <center>
 
 <div id="menu">
+
+	<h1>Le Pendu</h1>
 	
-	<form>
-		<div id="nameForm">
-			<label for="playerName"> Entrez votre pseudo :</label>
-			<input id="nameEntry" type="text" name="playerName">
-		</div>
-		<div id="themeForm">
-			<p id="themeChoice">Choisissez un th�me :</p>
-			<input id="disney" type="submit" value="Disney">
-			<input id="batman" type="submit" value="Batman">
-			<input id="pokemon" type="submit" value="Pokemon">
-			<input id="cuisine" type="submit" value="Cuisine">
-		</div>
-		<div id="hardnessForm">
-			<p id="hardnessChoice">Choisissez une difficult� :</p>
-			<input id="easy" type="submit" name="Facile">
-			<input id="medium" type="submit" name="Intermediaire">
-			<input id="hard" type="submit" name="Difficile">
-		</div>
+	<form id="nameForm">
+		<label for="playerName"> Entrez votre pseudo :</label>
+		<input id="nameEntry" type="text" name="playerName" required>
 	</form>
+	<form id="themeForm">
+		<p id="themeChoice">Choisissez un thème :</p>
+		<input id="disney" name="tChoice" type="radio" value="Disney" required>
+		<input id="batman" name="tChoice" type="radio" value="Batman" required>
+		<input id="pokemon" name="tChoice" type="radio" value="Pokemon" required>
+		<input id="cuisine" name="tChoice" type="radio" value="Cuisine" required>
+	</form>
+	<form id="hardnessForm">
+		<p id="hardnessChoice">Choisissez une difficulté :</p>
+		<input id="easy" name="hChoice" type="radio" value="Facile" required>
+		<input id="medium" name="hChoice" type="radio" value="Intermediaire" required>
+		<input id="hard" name="hChoice" type="radio" value="Difficile" required>
+	</form>
+	<input type="submit" name="Valider" onclick="getForms()">
 
 </div>
 <div id="page">
 	
 	<img name="pendu" class="pendu" src="images/pendu_0.jpg">
 	
-	<h1>Jeu de pendu</h1>
+	<h1 id="themeTitre"></h1>
 
-	<h2>Entrez une lettre gr�ce au clavier ci-dessous ; si elle est dans le mot secret, elle sera affich�e mais sinon... la sentence se rapprochera !</h2>
+	<h2>Cliquez sur une lettre du clavier ci-dessous ; si elle est dans le mot recherché, elle sera affichée mais sinon... Pendu !</h2>
 	
 	<table id="clavier">
 	 <tr>
