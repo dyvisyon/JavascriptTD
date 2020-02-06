@@ -29,7 +29,7 @@
                         <li><a href="TD_II.html">TD II</a></li>
                         <li><a href="TD_III.html">TD III</a></li>
                         <li><a href="TD_IV.html">TD IV</a></li>
-                        <li><a href="projet.html">Projet</a></li>
+                        <li><a href="projet.html">Pendu</a></li>
                     </ul>
                 </li>
                 <li>L'équipe : lesPaillettes
@@ -49,15 +49,18 @@
     </form>
 
     <form onsubmit="return false;">
-        <input type="image" id="punch" src="imgFile/punch.png" value="pierre" name="bouton" onclick="jouerPierre()">
-        <input type="image" id="hand" src="imgFile/hand.png" value="feuille" name="bouton" onclick="jouerFeuille()">
-        <input type="image" id="deaf" src="imgFile/deaf.png" value='ciseaux' name="bouton" onclick="jouerCiseaux()">
+        <input type="image" id="punch" class="bouton" src="imgFile/punch.png" value="pierre" name="bouton" onclick="jouerPierre()">
+        <input type="image" id="hand" class="bouton" src="imgFile/hand.png" value="feuille" name="bouton" onclick="jouerFeuille()">
+        <input type="image" id="deaf" class="bouton" src="imgFile/deaf.png" value='ciseaux' name="bouton" onclick="jouerCiseaux()">
     </form>
 
     <form onsubmit="return false;">
-        <input type="submit" value="Recommencer" onclick="isLost()">
+        <input type="submit" class="bouton" value="Recommencer" onclick="isLost()">
     </form>
-    <p id=reponse></p>
+    <p id="reponse"></p>
+    <p id="scored"></p>
+    <div id="mondiv"></div>
+    <p id="chrono"></p>
 
     <script>
         function isLost() {
@@ -65,23 +68,31 @@
         }
 
         var botPlay;
+        var newBotPlay;
+        var tabScore = [];
+
 
         function jouerPierre() {
-            botPlay = randomBotChoice();
-            console.log('user: pierre, bot:', botPlay);
-            compare('pierre', botPlay);
+            newRandomBotChoice()
+            console.log('user: pierre, bot:', newBotPlay);
+            compare('pierre', newBotPlay);
+            botPlay = newBotPlay;
         }
 
         function jouerFeuille() {
+            newRandomBotChoice()
             botPlay = randomBotChoice();
-            console.log('user: feuille, bot:', botPlay);
-            compare('feuille', botPlay);
+            console.log('user: feuille, bot:', newBotPlay);
+            compare('feuille', newBotPlay);
+            botPlay = newBotPlay;
         }
 
         function jouerCiseaux() {
+            newRandomBotChoice()
             botPlay = randomBotChoice();
-            console.log('user: ciseaux bot:', botPlay);
-            compare('ciseaux', botPlay);
+            console.log('user: ciseaux bot:', newBotPlay);
+            compare('ciseaux', newBotPlay);
+            botPlay = newBotPlay;
         }
 
         function getRandomInt(max) {
@@ -89,7 +100,7 @@
         }
 
         function randomBotChoice() {
-            var botChoice = getRandomInt(2);
+            let botChoice = getRandomInt(2);
 
             if (botChoice == 0) {
                 botChoice = "pierre";
@@ -98,9 +109,17 @@
             } else if (botChoice == 2) {
                 botChoice = "ciseaux";
             }
-            console.log(botChoice);
             return botChoice;
         }
+
+        function newRandomBotChoice() {
+            newBotPlay = randomBotChoice();
+            while (botPlay == newBotPlay) {
+                newBotPlay = randomBotChoice();
+            }
+        }
+
+        var score = 0;
 
         function compare(a, b) {
             //si choix du joueur == choix ordi : egalité
@@ -108,52 +127,112 @@
                 switch (b) {
                     case 'ciseaux':
                         document.getElementById('reponse').innerHTML = 'Gagné !';
+                        score++;
                         break;
 
                     case 'pierre':
                         document.getElementById('reponse').innerHTML = 'Egalité !';
+                        score++;
                         break;
 
                     case 'feuille':
                         document.getElementById('reponse').innerHTML = 'Perdu !';
+                        getScore();
+                        displayScore();
+                        score = 0;
                         break;
                 }
             } else if (a == 'feuille') {
                 switch (b) {
                     case 'ciseaux':
                         document.getElementById('reponse').innerHTML = 'Perdu !';
+                        getScore();
+                        displayScore();
+                        score = 0;
                         break;
 
                     case 'pierre':
                         document.getElementById('reponse').innerHTML = 'Gagné !';
+                        score++;
                         break;
 
                     case 'feuille':
                         document.getElementById('reponse').innerHTML = 'Egalité !';
+                        score++;
                         break;
                 }
             } else {
                 switch (b) {
                     case 'ciseaux':
                         document.getElementById('reponse').innerHTML = 'Egalité !';
+                        score++;
                         break;
 
                     case 'pierre':
                         document.getElementById('reponse').innerHTML = 'Perdu !';
+                        getScore();
+                        displayScore();
+                        score = 0;
                         break;
 
                     case 'feuille':
                         document.getElementById('reponse').innerHTML = 'Gagné !';
+                        score++;
                         break;
                 }
             }
+            document.getElementById('scored').innerHTML = score;
+            console.log(score);
+        }
+
+        function getScore() {
+            var playerName = document.getElementById('name').value;
+            tabScore.push([playerName, score]);
+            console.log(tabScore);
+        }
+
+        function scoreTab() {
+            let html = '<ul>';
+            for (let result of tabScore) {
+                html += '<li>';
+                html += 'Joueur : ' + result[0];
+                html += ' | Score : ' + result[1];
+                html += '</li>';
+            }
+            html += '</ul>';
+            document.getElementById('mondiv').innerHTML = html;
+        }
+
+        function displayScore() {
+            if (tabScore.length > 0) {
+                scoreTab();
+            }
+        }
+
+        var cpt = 3;
+        timer = setInterval(function() {
+            if (cpt > 0) {
+                --cpt; // décrémente le compteur
+            } else {
+                cpt = 3;
+            }
+            document.getElementById("chrono").innerHTML = "0" + cpt + "s";
+        }, 1000);
+
+        if (document.getElementsByClassName('bouton').onclick == null && cpt == 0) {
+            document.getElementById('reponse').innerHTML = 'Perdu !';
+            getScore();
+            displayScore();
+            score = 0;
+            console.log('temps écoulé');
+            cpt = 3;
         }
     </script>
 
     <footer>
         <div>
             <img src="imgFile/zeTeam.jpg" alt="zeTeam">
-            <p>TD I by lesPaillettes<br>(aka Keen'v, la Martiniquaise et lolo des bois)</p>
+            <p>Pierre, Feuille, Ciseaux by lesPaillettes<br>(aka Keen'v, la Martiniquaise et lolo des bois)</p>
         </div>
     </footer>
 

@@ -1,3 +1,7 @@
+.menu {
+    position: absolute;
+}
+
 #menu,
 #menu ul {
     padding: 0;
