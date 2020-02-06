@@ -1,11 +1,12 @@
 
 #page {
-	background-color:fcd315;
+	background-color:#CCC;
 	border:1px solid black;
 	text-align:left;
 	width:60%;
 	padding:30px;
 	height:450px;
+	border-radius: 5px;
 }
 
 h1 {
