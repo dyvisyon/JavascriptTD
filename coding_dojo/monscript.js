@@ -238,11 +238,13 @@ function displayMenu() {
     displayScore();
     document.getElementById('menu').style.display = 'block';
     document.getElementById('page').style.display = 'none';
+    document.getElementById('choix').style.display = 'none';
 }
 
 function displayGame() {
     document.getElementById('menu').style.display = 'none';
     document.getElementById('page').style.display = 'block';
+    document.getElementById('choix').style.display = 'none';
 }
 
 function playAgain() {
@@ -267,34 +269,29 @@ function quit() {
     displayMenu();
 }
 
-var cpt = 120;
-if (timer) {
-    clearTimeout(timer);
-}
-timer = setInterval(function() {
-    if (cpt > 0) {
-        document.getElementById("chrono").innerHTML = cpt + "s";
-        --cpt; // décrémente le compteur
-    } else {
-        document.getElementById('chrono').innerHTML = "<p>Temps écoulé</p>";
-        scoreTab.push(score);
-    }
-}, 1000);
-
-function startGame() {
+function chronometre() {
+    var cpt = 2;
     if (timer) {
         clearTimeout(timer);
     }
-    getForms();
-    var cpt = 120;
     timer = setInterval(function() {
         if (cpt > 0) {
             document.getElementById("chrono").innerHTML = cpt + "s";
             --cpt; // décrémente le compteur
         } else {
             document.getElementById('chrono').innerHTML = "<p>Temps écoulé</p>";
+            scoreTab.push(score);
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('page').style.display = 'none';
+            document.getElementById('choix').style.display = 'block';
         }
     }, 1000);
+}
+
+function startGame() {
+    getForms();
+    chronometre();
+
 }
 
 function getScore() {

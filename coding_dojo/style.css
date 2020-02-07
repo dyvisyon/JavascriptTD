@@ -20,6 +20,20 @@
         font-family: Helvetica;
     }
     
+    #choix {
+        background-color: #CCC;
+        border: 1px solid black;
+        text-align: left;
+        width: 60%;
+        padding: 30px;
+        height: 600px;
+        border-radius: 5px;
+        display: none;
+        font-family: Helvetica;
+    }
+    
+    #choix button {}
+    
     #result {
         float: right;
     }
