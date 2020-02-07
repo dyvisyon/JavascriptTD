@@ -21,39 +21,62 @@ var scoreTab = [];
 batWordsE[0] = "ROBIN";
 batWordsE[1] = "JOKER";
 batWordsE[2] = "WAYNE";
+batWordsE[3] = "FREEZE";
+batWordsE[4] = "CROC";
 pokeWordsE[0] = "KANTO";
 pokeWordsE[1] = "RED";
 pokeWordsE[2] = "ABO";
+pokeWordsE[3] = "PIKACHU";
+pokeWordsE[4] = "BADGE";
 disneyWordsE[0] = "DINGO";
 disneyWordsE[1] = "NEMO";
-disneyWordsE[2] = "PIXAR";
+disneyWordsE[2] = "DUMBO";
+disneyWordsE[3] = "MICKEY";
+disneyWordsE[4] = "MINNIE";
 kitchenWordsE[0] = "RIZ";
 kitchenWordsE[1] = "LAMBI";
 kitchenWordsE[2] = "FOUET";
+kitchenWordsE[3] = "COUTEAU";
 batWordsM[0] = "BATCAVE";
 batWordsM[1] = "GOTHAM";
 batWordsM[2] = "JUSTICE";
+batWordsM[3] = "THEATRE";
+batWordsM[4] = "BATMOBILE";
 pokeWordsM[0] = "POKEBALL";
 pokeWordsM[1] = "ARENES";
 pokeWordsM[2] = "POKEDEX";
+pokeWordsM[3] = "CARAPUCE";
+pokeWordsM[4] = "MEWTWO";
 disneyWordsM[0] = "MICKEY";
 disneyWordsM[1] = "HERCULE";
 disneyWordsM[2] = "MALEFIQUE";
+disneyWordsM[3] = "RAIPONCE";
+disneyWordsM[4] = "CHATEAU";
 kitchenWordsM[0] = "HARICOT";
 kitchenWordsM[1] = "CANTINE";
-kitchenWordsM[2] = "COUTEAU";
+kitchenWordsM[2] = "CUILLERE";
+kitchenWordsM[3] = "CASSEROLE";
+kitchenWordsM[4] = "FOURCHETTE";
 batWordsH[0] = "ARKHAM";
 batWordsH[1] = "FIREFLY";
 batWordsH[2] = "PENNYWORTH";
-pokeWordsH[0] = "HYPOMADE";
+batWordsH[3] = "HUNTRESS";
+batWordsH[4] = "BATGRAPPIN";
+pokeWordsH[0] = "HYPNOMADE";
 pokeWordsH[1] = "LAVANVILLE";
 pokeWordsH[2] = "MASTERBALL";
+pokeWordsH[3] = "ETHERNATOS";
+pokeWordsH[4] = "RAYQUAZA";
 disneyWordsH[0] = "POCAHONTAS";
 disneyWordsH[1] = "PINOCCHIO";
 disneyWordsH[2] = "DALMATIENS";
+disneyWordsH[3] = "GRIMHILDE";
+disneyWordsH[4] = "NOTINGHAM";
 kitchenWordsH[0] = "TARTIFLETTE";
 kitchenWordsH[1] = "EMPANADAS";
 kitchenWordsH[2] = "RATATOUILLE";
+kitchenWordsH[3] = "ETCHEBEST";
+kitchenWordsH[4] = "CARBONARA";
 
 var word;
 var timer;
@@ -81,13 +104,17 @@ function getRandomInt(max) {
 }
 
 function randomWord(list) {
-    let roll = getRandomInt(2);
+    let roll = getRandomInt(4);
     if (roll == 0) {
         roll = list[0];
     } else if (roll == 1) {
         roll = list[1];
     } else if (roll == 2) {
         roll = list[2];
+    } else if (roll == 3) {
+        roll = list[3];
+    } else if (roll == 4) {
+        roll = list[4];
     }
     return roll;
 }
@@ -149,6 +176,23 @@ function getTheme(a, b) {
                 wordsList = kitchenWordsH;
                 break;
         }
+    }
+    switch (a) {
+        case 'Disney':
+            document.getElementById('page').style.backgroundImage = "url(images/disney-pattern.jpg)";
+            break;
+        case 'Batman':
+            document.getElementById('page').style.backgroundImage = "url(images/batman-pattern.jpg)";
+            document.getElementById('page').style.color = '#FCDC12';
+            break;
+
+        case 'Pokemon':
+            document.getElementById('page').style.backgroundImage = "url(images/pokemon-pattern.jpg)";
+            break;
+
+        case 'Cuisine':
+            document.getElementById('page').style.backgroundImage = "url(images/cuisine-pattern.jpeg)";
+            break;
     }
     newRandomWord();
     motSecret = randomWord(wordsList);
@@ -251,7 +295,6 @@ function playAgain() {
     coupsManques = 0;
     document.images['pendu'].src = "images/pendu_" + coupsManques + ".jpg";
     lettresTrouvees = 0;
-    motSecret = "";
     tailleMot = 0;
     /* let letters = document.querySelectorAll('#clavier');
     changeCouleur(letters, 'white'); */
@@ -270,7 +313,7 @@ function quit() {
 }
 
 function chronometre() {
-    var cpt = 2;
+    var cpt = 120;
     if (timer) {
         clearTimeout(timer);
     }
@@ -300,7 +343,7 @@ function getScore() {
     console.log(scoreTab);
 }
 
-function scoreTab() {
+function scoreT() {
     let html = '<ul>';
     for (let result of scoreTab) {
         html += '<li>';
@@ -314,6 +357,6 @@ function scoreTab() {
 
 function displayScore() {
     if (scoreTab.length > 0) {
-        scoreTab();
+        scoreT();
     }
 }

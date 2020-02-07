@@ -1,116 +1,140 @@
-    #menu {
-        background-color: #CCC;
-        border: 1px solid black;
-        text-align: center;
-        width: 60%;
-        padding: 30px;
-        border-radius: 5px;
-        font-family: Helvetica;
-    }
-    
-    #page {
-        background-color: #CCC;
-        border: 1px solid black;
-        text-align: left;
-        width: 60%;
-        padding: 30px;
-        height: 600px;
-        border-radius: 5px;
-        display: none;
-        font-family: Helvetica;
-    }
-    
-    #choix {
-        background-color: #CCC;
-        border: 1px solid black;
-        text-align: left;
-        width: 60%;
-        padding: 30px;
-        height: 600px;
-        border-radius: 5px;
-        display: none;
-        font-family: Helvetica;
-    }
-    
-    #choix button {}
-    
-    #result {
-        float: right;
-    }
-    
-    h1 {
-        font-size: 30px;
-        font-family: Arial, sans serif;
-    }
-    
-    img.pendu {
-        float: right;
-    }
-    
-    h2 {
-        font-size: 16px;
-        font-family: Arial, sans-serif;
-    }
-    
-    #blabla {
-        margin: 30px 0 0 0;
-        clear: both;
-        top: 100px;
-    }
-    
-    #blabla td {
-        padding: 10px;
-        background-color: #EEE;
-        border: 2px inset black;
-        width: 30px;
-        height: 30px;
-        font-weight: bold;
-        font-size: 1.5em;
-        text-align: center;
-    }
-    
-    #blabla p {
-        visibility: hidden;
-    }
-    
-    #result {
-        width: 30%;
-    }
-    
-    .clav {
-        border: 4px outset black;
-        padding: 10px;
-        background-color: #CCC;
-    }
-    
-    #clavier td {
-        background-color: white;
-        border: 1px solid black;
-        width: 25px;
-        height: 25px;
-        text-align: center;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    
-    a.lien {
-        color: blue;
-        text-decoration: none;
-        font-size: 20px;
-    }
-    
-    a.lien:hover {
-        color: red;
-        font-weight: bold;
-        text-decoration: underline;
-    }
-    
-    .lightGreen {
-        background-color: lightGreen!important;
-    }
-    
-    #scorePoints {
-        font-size: 2em;
-        font-family: Helvetica;
-        text-align: center;
-    }
+        #menu {
+            background-color: #CCC;
+            border: 1px solid black;
+            text-align: center;
+            width: 60%;
+            padding: 30px;
+            border-radius: 5px;
+            font-family: Helvetica;
+        }
+        
+        #page {
+            border: 1px solid black;
+            text-align: left;
+            width: 60%;
+            padding: 30px;
+            height: 600px;
+            border-radius: 5px;
+            display: none;
+            font-family: Helvetica;
+            background-repeat: repeat;
+            background-size: cover;
+        }
+        
+        #choix {
+            background-color: #CCC;
+            border: 1px solid black;
+            text-align: left;
+            width: 60%;
+            padding: 30px;
+            height: 600px;
+            border-radius: 5px;
+            display: none;
+            font-family: Helvetica;
+        }
+        
+        #choix button {}
+        
+        #result {
+            float: right;
+        }
+        
+        h1 {
+            font-size: 30px;
+            font-family: Arial, sans serif;
+        }
+        
+        img.pendu {
+            float: right;
+        }
+        
+        h2 {
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+        
+        #blabla {
+            margin: 30px 0 0 0;
+            clear: both;
+            top: 100px;
+        }
+        
+        #blabla td {
+            padding: 10px;
+            background-color: #EEE;
+            border: 2px inset black;
+            width: 30px;
+            height: 30px;
+            font-weight: bold;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        
+        #blabla p {
+            visibility: hidden;
+        }
+        
+        #result {
+            width: 30%;
+        }
+        
+        .clav {
+            border: 4px outset black;
+            padding: 10px;
+            background-color: #CCC;
+        }
+        
+        #clavier td {
+            background-color: white;
+            border: 1px solid black;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        a.lien {
+            color: blue;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        
+        a.lien:hover {
+            color: red;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        .lightGreen {
+            background-color: lightGreen!important;
+        }
+        
+        .disney {
+            background-image: url(images/disney-pattern.jpg)!important;
+            background-repeat: repeat;
+            background-size: cover;
+        }
+        
+        .batman {
+            background-image: url(images/batman-pattern.jpg)!important;
+            background-repeat: repeat;
+            background-size: cover;
+        }
+        
+        .pokemon {
+            background-image: url(images/pokemon-pattern.jpg)!important;
+            background-repeat: repeat;
+            background-size: inherit;
+        }
+        
+        .cuisine {
+            background-image: url(images/cuisine-pattern.jpeg)!important;
+            background-repeat: repeat;
+        }
+        
+        #scorePoints {
+            font-size: 2em;
+            font-family: Helvetica;
+            text-align: center;
+        }
