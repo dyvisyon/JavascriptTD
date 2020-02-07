@@ -1,3 +1,14 @@
+    #menu {
+    	background-color: #CCC;
+        border: 1px solid black;
+        text-align: center;
+        width: 60%;
+        padding: 30px;
+        height: 450px;
+        border-radius: 5px;
+        font-family: Helvetica;
+    }
+
     #page {
         background-color: #CCC;
         border: 1px solid black;
@@ -7,7 +18,12 @@
         height: 450px;
         border-radius: 5px;
         display: none;
+        font-family: Helvetica;
     }
+
+	#result {
+		float: right;
+	}
     
     h1 {
         font-size: 30px;
@@ -31,7 +47,7 @@
     
     #blabla td {
         padding: 10px;
-        background-color: #1ee193;
+        background-color: #EEE;
         border: 2px inset black;
         width: 30px;
         height: 30px;
@@ -51,7 +67,7 @@
     .clav {
         border: 4px outset black;
         padding: 10px;
-        background-color: #2b80d5;
+        background-color: #CCC;
     }
     
     #clavier td {
