@@ -194,30 +194,31 @@ function getTheme(a, b) {
             document.getElementById('page').style.backgroundImage = "url(images/cuisine-pattern.jpeg)";
             break;
     }
-    newRandomWord();
-    motSecret = randomWord(wordsList);
+    //newRandomWord(wordsList);
+    motSecret = newRandomWord(wordsList);
+    console.log(motSecret);
     return motSecret;
 }
 
-function newRandomWord() {
-    newSecretWord = randomWord(wordsList);
+function newRandomWord(list) {
+    newSecretWord = randomWord(list);
     while (motSecret == newSecretWord) {
-        newSecretWord = newRandomWord();
-        return newSecretWord;
-
+        newSecretWord = randomWord(list);
     }
+    motSecret = newSecretWord;
+    return motSecret;
 }
 
 function transform(a, b) {
-    var motSecret = getTheme(a, b);
-    tailleMot = motSecret.length;
+    var mSecret = getTheme(a, b);
+    tailleMot = mSecret.length;
     word = '<table> <tr>';
     for (var i = 0; i < tailleMot; i++) {
-        word += '<td> <p id=\"' + i + '\">' + motSecret[i] + '</p> </td> ';
+        word += '<td> <p id=\"' + i + '\">' + mSecret[i] + '</p> </td> ';
     }
     word += '</tr> </table>';
     document.getElementById('blabla').innerHTML = word;
-    console.log(motSecret);
+    //console.log(motSecret);
     return motSecret, tailleMot;
 }
 
@@ -339,7 +340,7 @@ function startGame() {
 
 function getScore() {
     var playerName = document.getElementById('nameEntry').value;
-    tabScore.push([playerName, score]);
+    scoreTab.push([playerName, score]);
     console.log(scoreTab);
 }
 
