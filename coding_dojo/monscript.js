@@ -65,13 +65,17 @@ function getForms() {
     }
     word = transform(themeSelected, hardnessSelected);
     displayGame();
+    var timer;
     var cpt = 120;
-    timer = setInterval(function() {
+    if (timer) {
+        clearTimeout(timer);
+    }
+    timer1 = setInterval(function() {
         if (cpt > 0) {
             document.getElementById("chrono").innerHTML = cpt + "s";
             --cpt; // décrémente le compteur
         } else {
-            cpt = 120;
+            document.getElementById('chrono').innerHTML = "<p>Temps écoulé</p>";
         }
     }, 1000);
 }
@@ -234,17 +238,6 @@ function playAgain() {
     lettresTrouvees = 0;
     motSecret = "";
     tailleMot = 0;
-    if (audioWin.play()) {
-        audioWin.pause;
-    } else {
-        continue;
-    }
-    if (audioLoose.play()) {
-        audioLoose.pause;
-    } else {
-        continue;
-    }
-
     /* let letters = document.querySelectorAll('#clavier');
     changeCouleur(letters, 'white'); */
     getForms();
