@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel=Stylesheet type="text/css" href=style.css>
+</head>
+
+<body>
+    <div id="menu">
+
+        <h1>Le Pendu</h1>
+
+        <form id="nameForm">
+            <label for="playerName"> Entrez votre pseudo :</label>
+            <input id="nameEntry" type="text" name="playerName" required>
+        </form>
+        <form id="themeForm">
+            <p id="themeChoice">Choisissez un thème :</p>
+            <input id="disney" name="tChoice" type="radio" value="Disney" required>
+            <input id="batman" name="tChoice" type="radio" value="Batman" required>
+            <input id="pokemon" name="tChoice" type="radio" value="Pokemon" required>
+            <input id="cuisine" name="tChoice" type="radio" value="Cuisine" required>
+        </form>
+        <form id="hardnessForm">
+            <p id="hardnessChoice">Choisissez une difficulté :</p>
+            <input id="easy" name="hChoice" type="radio" value="Facile" required>
+            <input id="medium" name="hChoice" type="radio" value="Intermediaire" required>
+            <input id="hard" name="hChoice" type="radio" value="Difficile" required>
+        </form>
+        <input type="submit" name="Valider" onclick="getForms()">
+
+    </div>
+
+    <div id="page">
+        <img name="pendu" class="pendu" src="images/pendu_0.jpg">
+        <h1 id="themeTitre"></h1>
+        <h2>Essayez de deviner le maximum de mots en moins de 2min... Mais gare à la potence!!</h2>
+        <table id="clavier" class="clav">
+            <tr>
+                <td onclick="proposer(this);">A</td>
+                <td onclick="proposer(this);">B</td>
+                <td onclick="proposer(this);">C</td>
+                <td onclick="proposer(this);">D</td>
+                <td onclick="proposer(this);">E</td>
+                <td onclick="proposer(this);">F</td>
+                <td onclick="proposer(this);">G</td>
+                <td onclick="proposer(this);">H</td>
+                <td onclick="proposer(this);">I</td>
+                <td onclick="proposer(this);">J</td>
+            </tr>
+            <tr>
+                <td onclick="proposer(this);">K</td>
+                <td onclick="proposer(this);">L</td>
+                <td onclick="proposer(this);">M</td>
+                <td onclick="proposer(this);">N</td>
+                <td onclick="proposer(this);">O</td>
+                <td onclick="proposer(this);">P</td>
+                <td onclick="proposer(this);">Q</td>
+                <td onclick="proposer(this);">R</td>
+                <td onclick="proposer(this);">S</td>
+                <td onclick="proposer(this);">T</td>
+            </tr>
+
+            <tr>
+                <td onclick="proposer(this);">U</td>
+                <td onclick="proposer(this);">V</td>
+                <td onclick="proposer(this);">W</td>
+                <td onclick="proposer(this);">X</td>
+                <td onclick="proposer(this);">Y</td>
+                <td onclick="proposer(this);">Z</td>
+            </tr>
+        </table>
+        <br>
+        <div id='blabla'> </div>
+        <div id='result' width=30%></div>
+        <input type="submit" name="Rejouer" value="Rejouer" onclick="playAgain()">
+        <input type="submit" name="Abandonner" value="Abandonner" onclick="displayMenu()">
+    </div>
+
+</body>
+<script type="text/javascript" src="monscript.js"></script>
+
+</html>
