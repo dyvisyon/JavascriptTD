@@ -1,29 +1,28 @@
     #menu {
-    	background-color: #CCC;
+        background-color: #CCC;
         border: 1px solid black;
         text-align: center;
         width: 60%;
         padding: 30px;
-        height: 450px;
         border-radius: 5px;
         font-family: Helvetica;
     }
-
+    
     #page {
         background-color: #CCC;
         border: 1px solid black;
         text-align: left;
         width: 60%;
         padding: 30px;
-        height: 450px;
+        height: 600px;
         border-radius: 5px;
         display: none;
         font-family: Helvetica;
     }
-
-	#result {
-		float: right;
-	}
+    
+    #result {
+        float: right;
+    }
     
     h1 {
         font-size: 30px;
@@ -90,4 +89,14 @@
         color: red;
         font-weight: bold;
         text-decoration: underline;
+    }
+    
+    .lightGreen {
+        background-color: lightGreen!important;
+    }
+    
+    #scorePoints {
+        font-size: 2em;
+        font-family: Helvetica;
+        text-align: center;
     }

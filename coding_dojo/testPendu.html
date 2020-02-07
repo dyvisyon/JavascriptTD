@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        
+
     </header>
 
     <center>
@@ -20,35 +20,37 @@
 
             <h1>Le Pendu</h1>
 
-        <form id="nameForm">
-            <label for="playerName"> Entrez votre pseudo :</label>
-            <input id="nameEntry" type="text" name="playerName" required>
-        </form>
-        <hr>
-        <form id="themeForm">
-            <p id="themeChoice">Choisissez un thème :</p>
-            <label for="disney"><img class='lab' src="images/disney.png"></label>
-            <label for="batman"><img class='lab' src="images/comic.png"></label>
-            <label for="pokemon"><img class='lab' src="images/pokemon.png"></label>
-            <label for="cuisine"><img class='lab' src="images/plate.png"></label><br>
+            <form id="nameForm">
+                <label for="playerName"> Entrez votre pseudo :</label>
+                <input id="nameEntry" type="text" name="playerName" required>
+            </form>
+            <hr>
+            <form id="themeForm">
+                <p id="themeChoice">Choisissez un thème :</p>
+                <label for="disney"><img class='lab' src="images/disney.png"></label>
+                <label for="batman"><img class='lab' src="images/comic.png"></label>
+                <label for="pokemon"><img class='lab' src="images/pokemon.png"></label>
+                <label for="cuisine"><img class='lab' src="images/plate.png"></label><br>
 
-            <input id="disney" name="tChoice" type="radio" value="Disney" required>
-            <input id="batman" name="tChoice" type="radio" value="Batman" required>
-            <input id="pokemon" name="tChoice" type="radio" value="Pokemon" required>
-            <input id="cuisine" name="tChoice" type="radio" value="Cuisine" required>
-        </form>
-        <hr>
-        <form id="hardnessForm">
-            <p id="hardnessChoice">Choisissez une difficulté :</p>
-            <label for="easy">Facile</label>
-            <input id="easy" name="hChoice" type="radio" value="Facile" required>
-            <label for="medium">-|- Intermédiaire</label>
-            <input id="medium" name="hChoice" type="radio" value="Intermediaire" required>
-            <label for="hard">-|- Difficile</label>
-            <input id="hard" name="hChoice" type="radio" value="Difficile" required>
-        </form>
-        <hr>
-        <input type="submit" name="Valider" onclick="getForms()">
+                <input id="disney" name="tChoice" type="radio" value="Disney" required>
+                <input id="batman" name="tChoice" type="radio" value="Batman" required>
+                <input id="pokemon" name="tChoice" type="radio" value="Pokemon" required>
+                <input id="cuisine" name="tChoice" type="radio" value="Cuisine" required>
+            </form>
+            <hr>
+            <form id="hardnessForm">
+                <p id="hardnessChoice">Choisissez une difficulté :</p>
+                <label for="easy">Facile</label>
+                <input id="easy" name="hChoice" type="radio" value="Facile" required>
+                <label for="medium">-|- Intermédiaire</label>
+                <input id="medium" name="hChoice" type="radio" value="Intermediaire" required>
+                <label for="hard">-|- Difficile</label>
+                <input id="hard" name="hChoice" type="radio" value="Difficile" required>
+            </form>
+            <hr>
+            <input type="submit" name="Valider" onclick="startGame()">
+            <hr>
+            <div id="tableauScore"></div>
 
         </div>
 
@@ -97,6 +99,7 @@
             <div id='result' width=30%></div>
             <input type="submit" name="Rejouer" value="Rejouer" onclick="playAgain()">
             <input type="submit" name="Abandonner" value="Abandonner" onclick="displayMenu()">
+            <div id="scorePoints"></div>
         </div>
     </center>
 

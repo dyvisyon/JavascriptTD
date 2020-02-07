@@ -11,11 +11,12 @@ var pokeWordsH = new Array();
 var disneyWordsH = new Array();
 var kitchenWordsH = new Array();
 var tailleMot;
-var fini = false;
 var coupsManques = 0;
 var lettresTrouvees = 0;
 var audioWin = new Audio('sons/queenWeAreTheChampions.mp3');
 var audioLoose = new Audio('sons/looser.mp3');
+var score = 0;
+var scoreTab = [];
 
 batWordsE[0] = "ROBIN";
 batWordsE[1] = "JOKER";
@@ -55,6 +56,9 @@ kitchenWordsH[1] = "EMPANADAS";
 kitchenWordsH[2] = "RATATOUILLE";
 
 var word;
+var timer;
+var motSecret;
+var newSecretWord;
 
 function getForms() {
     themeSelected = document.querySelector('input[name=tChoice]:checked').value;
@@ -65,19 +69,11 @@ function getForms() {
     }
     word = transform(themeSelected, hardnessSelected);
     displayGame();
-    var timer;
-    var cpt = 120;
-    if (timer) {
-        clearTimeout(timer);
+    let lightGreen = document.querySelectorAll('.lightGreen');
+    for (let elem of lightGreen) {
+        elem.classList.remove('lightGreen');
     }
-    timer1 = setInterval(function() {
-        if (cpt > 0) {
-            document.getElementById("chrono").innerHTML = cpt + "s";
-            --cpt; // décrémente le compteur
-        } else {
-            document.getElementById('chrono').innerHTML = "<p>Temps écoulé</p>";
-        }
-    }, 1000);
+
 }
 
 function getRandomInt(max) {
@@ -97,7 +93,6 @@ function randomWord(list) {
 }
 
 function getTheme(a, b) {
-    var motSecret;
     if (b == 'Facile') {
         switch (a) {
             case 'Disney':
@@ -155,8 +150,18 @@ function getTheme(a, b) {
                 break;
         }
     }
+    newRandomWord();
     motSecret = randomWord(wordsList);
     return motSecret;
+}
+
+function newRandomWord() {
+    newSecretWord = randomWord(wordsList);
+    while (motSecret == newSecretWord) {
+        newSecretWord = newRandomWord();
+        return newSecretWord;
+
+    }
 }
 
 function transform(a, b) {
@@ -168,12 +173,13 @@ function transform(a, b) {
     }
     word += '</tr> </table>';
     document.getElementById('blabla').innerHTML = word;
+    console.log(motSecret);
     return motSecret, tailleMot;
 }
 
 function proposer(element) {
     // Si la couleur de fond est lightgreen, c'est qu'on a déjà essayé - on quitte la fonction
-    if (element.style.backgroundColor == "lightGreen" || fini) {
+    if (element.className == "lightGreen") {
         return;
     }
     // On récupère la lettre du clavier et on met la touche en lightgreen (pour signaler qu'elle est cliquée)
@@ -202,27 +208,34 @@ function proposer(element) {
         document.images['pendu'].src = "images/pendu_" + coupsManques + ".jpg"; // On change l'image du pendu
         // Si on a raté 9 fois :
         if (coupsManques == 9) {
-            document.getElementById('result').innerHTML = "<div style=\"width:100%;height:0;padding-bottom:70%;position:relative;\"><iframe src=\"https://giphy.com/embed/3oz8xsuGvBn03H1boY\" width=\"100%\" height=\"100%\" style=\"position:absolute\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe></div><p>LOOSER!!!</p>";
-            audioLoose.play();
             for (var i = 0; i < tailleMot; i++) {
                 tabword[i].style.visibility = 'visible';
             }
-            fini = true;
+            playAgain();
             // on affiche le mot, on fini le jeu
         }
     }
     if (lettresTrouvees == tailleMot) {
-        document.getElementById('result').innerHTML = "<div style=\"width:100%;height:0;padding-bottom:100%;position:relative;\"><iframe src=\"https://giphy.com/embed/geL1pDlmZwpvqVQp6V\" width=\"100%\" height=\"100%\" style=\"position:absolute\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe></div><p>YOU\'RE A WINNER!!!</p>";
-        audioWin.play();
-        fini = true;
+        /* document.getElementById('result').innerHTML = "<div style=\"width:100%;height:0;padding-bottom:100%;position:relative;\"><iframe src=\"https://giphy.com/embed/geL1pDlmZwpvqVQp6V\" width=\"100%\" height=\"100%\" style=\"position:absolute\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe></div><p>YOU\'RE A WINNER!!!</p>";
+        audioWin.play(); */
+        score++;
+        document.getElementById('scorePoints').innerHTML = '<p>' + score + '</p>';
+        playAgain();
+        displayScore();
     }
+    return score;
 }
 
 function changeCouleur(element, couleur) {
-    element.style.backgroundColor = couleur;
+    element.classList.add('lightGreen');
+    //element.style.backgroundColor = couleur;
 }
 
 function displayMenu() {
+    if (timer) {
+        clearTimeout(timer);
+    }
+    displayScore();
     document.getElementById('menu').style.display = 'block';
     document.getElementById('page').style.display = 'none';
 }
@@ -233,12 +246,77 @@ function displayGame() {
 }
 
 function playAgain() {
-    fini = false;
     coupsManques = 0;
+    document.images['pendu'].src = "images/pendu_" + coupsManques + ".jpg";
     lettresTrouvees = 0;
     motSecret = "";
     tailleMot = 0;
     /* let letters = document.querySelectorAll('#clavier');
     changeCouleur(letters, 'white'); */
     getForms();
+}
+
+function quit() {
+    /*document.getElementById('result').innerHTML = "<div style=\"width:100%;position:absolute;\"><iframe src=\"https://giphy.com/embed/3oz8xsuGvBn03H1boY\" width=\"100%\" height=\"100%\" style=\"position:absolute\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe></div><p>LOOSER!!!</p>";
+    audioLoose.play();*/
+    scoreTab.push(score);
+    score = 0;
+    if (timer) {
+        clearTimeout(timer);
+    }
+    displayMenu();
+}
+
+var cpt = 120;
+if (timer) {
+    clearTimeout(timer);
+}
+timer = setInterval(function() {
+    if (cpt > 0) {
+        document.getElementById("chrono").innerHTML = cpt + "s";
+        --cpt; // décrémente le compteur
+    } else {
+        document.getElementById('chrono').innerHTML = "<p>Temps écoulé</p>";
+        scoreTab.push(score);
+    }
+}, 1000);
+
+function startGame() {
+    if (timer) {
+        clearTimeout(timer);
+    }
+    getForms();
+    var cpt = 120;
+    timer = setInterval(function() {
+        if (cpt > 0) {
+            document.getElementById("chrono").innerHTML = cpt + "s";
+            --cpt; // décrémente le compteur
+        } else {
+            document.getElementById('chrono').innerHTML = "<p>Temps écoulé</p>";
+        }
+    }, 1000);
+}
+
+function getScore() {
+    var playerName = document.getElementById('nameEntry').value;
+    tabScore.push([playerName, score]);
+    console.log(scoreTab);
+}
+
+function scoreTab() {
+    let html = '<ul>';
+    for (let result of scoreTab) {
+        html += '<li>';
+        html += 'Joueur : ' + result[0];
+        html += ' | Score : ' + result[1];
+        html += '</li>';
+    }
+    html += '</ul>';
+    document.getElementById('tableauScore').innerHTML = html;
+}
+
+function displayScore() {
+    if (scoreTab.length > 0) {
+        scoreTab();
+    }
 }
