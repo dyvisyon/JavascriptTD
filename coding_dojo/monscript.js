@@ -65,6 +65,15 @@ function getForms() {
     }
     word = transform(themeSelected, hardnessSelected);
     displayGame();
+    var cpt = 120;
+    timer = setInterval(function() {
+        if (cpt > 0) {
+            document.getElementById("chrono").innerHTML = cpt + "s";
+            --cpt; // décrémente le compteur
+        } else {
+            cpt = 120;
+        }
+    }, 1000);
 }
 
 function getRandomInt(max) {
@@ -225,6 +234,18 @@ function playAgain() {
     lettresTrouvees = 0;
     motSecret = "";
     tailleMot = 0;
-    document.getElementById('clavier').classList.add('clav');
+    if (audioWin.play()) {
+        audioWin.pause;
+    } else {
+        continue;
+    }
+    if (audioLoose.play()) {
+        audioLoose.pause;
+    } else {
+        continue;
+    }
+
+    /* let letters = document.querySelectorAll('#clavier');
+    changeCouleur(letters, 'white'); */
     getForms();
 }
